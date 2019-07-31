@@ -406,6 +406,7 @@ module.exports = class Request {
   handleRequest() {
     const _this = this;
 
+    let req = null;
     const resultPromise = new Promise((resolve, reject) => {
       const body = _this.body;
 
@@ -426,8 +427,7 @@ module.exports = class Request {
       const transOpts = _this.transportOptions;
 
       // Process the request
-      const req = transport.request(transOpts);
-      resultPromise.req = req;
+      req = transport.request(transOpts);
       req.on('abort', () => {
         const rawMessage = 'Client aborted the request';
         const message = `Connection failed: ${rawMessage}`;
@@ -450,6 +450,7 @@ module.exports = class Request {
       }
       req.end(this.body);
     });
+    resultPromise.req = req;
     return resultPromise;
   }
 }
