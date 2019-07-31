@@ -271,7 +271,10 @@ export default class Request {
    * Dispatches the request.
    */
   run() {
-    return this.handleRequest().then(response => this.handleResponse(response));
+    const requestPromise = this.handleRequest();
+    const resultPromise = requestPromise.then(response => this.handleResponse(response));
+    resultPromise.req = requestPromise.req;
+    return resultPromise;
   }
 
   /**
@@ -403,7 +406,7 @@ export default class Request {
   handleRequest() {
     const _this = this;
 
-    return new Promise((resolve, reject) => {
+    const resultPromise = new Promise((resolve, reject) => {
       const body = _this.body;
 
       if (_this.options.verbose) {
@@ -424,6 +427,7 @@ export default class Request {
 
       // Process the request
       const req = transport.request(transOpts);
+      resultPromise.req = req;
       req.on('abort', () => {
         const rawMessage = 'Client aborted the request';
         const message = `Connection failed: ${rawMessage}`;
@@ -446,5 +450,6 @@ export default class Request {
       }
       req.end(this.body);
     });
+    return resultPromise;
   }
 }
