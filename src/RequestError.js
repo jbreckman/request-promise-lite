@@ -7,7 +7,7 @@
  *
  * @extends Error
  */
-export default class RequestError extends Error {
+module.exports = class RequestError extends Error {
 
   /**
    * @return {string} the message - as-is

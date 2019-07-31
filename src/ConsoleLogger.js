@@ -1,4 +1,4 @@
-import util from 'util';
+const util = require('util');
 
 /**
  * Default RPL logger implementation that echoes debug messages to console.
@@ -11,7 +11,7 @@ import util from 'util';
  * later extended to include other syslog level methods (such as info, warn
  * etc.), if we ever get a use case.
  */
-export default class ConsoleLogger {
+module.exports = class ConsoleLogger {
   /**
    * Logs the debug level message.
    *

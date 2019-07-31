@@ -1,12 +1,12 @@
-import http from 'http';
-import https from 'https';
-import urlParser from 'url';
-import zlib from 'zlib';
-import ConnectionError from './ConnectionError';
-import ConsoleLogger from './ConsoleLogger';
-import HTTPError from './HTTPError';
-import ParseError from './ParseError';
-import StreamReader from './StreamReader';
+const http = require('http');
+const https = require('https');
+const urlParser = require('url');
+const zlib = require('zlib');
+const ConnectionError = require('./ConnectionError');
+const ConsoleLogger = require('./ConsoleLogger');
+const HTTPError = require('./HTTPError');
+const ParseError = require('./ParseError');
+const StreamReader = require('./StreamReader');
 
 // Static options & their default values. JavaScript does not permit
 // static attributes, hence defining outside the class scope.
@@ -30,7 +30,7 @@ let USER_DEFAULTS = {};
  * problems with WebPack. As a lightweight replacement, it suits well into
  * usage e.g. with Lambda functions.
  */
-export default class Request {
+module.exports = class Request {
   /**
    * Chooses the given transport type (HTTP or HTTPS) and returns the
    * corresponding handler.

@@ -1,4 +1,4 @@
-import RequestError from './RequestError';
+const RequestError = require('./RequestError');
 
 /**
  * @typedef {Object} ConnectionError
@@ -7,7 +7,7 @@ import RequestError from './RequestError';
  *
  * @extends RequestError
  */
-export default class ConnectionError extends RequestError {
+module.exports = class ConnectionError extends RequestError {
 
   /**
    * RequestError with HTTP Semantics

@@ -1,11 +1,11 @@
-import RequestError from './RequestError';
+const RequestError = require('./RequestError');
 
 /**
  * RequestError with HTTP Semantics
  *
  * @extends RequestError
  */
-export default class HTTPError extends RequestError {
+module.exports = class HTTPError extends RequestError {
 
   /**
    * RequestError with HTTP Semantics
